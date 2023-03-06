@@ -72,6 +72,13 @@ class SignInScreen extends StatelessWidget {
                           contentPadding: EdgeInsets.symmetric(horizontal: 16),
                         ),
                       ),
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: "Code referal",
+                          contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                        ),
+                      ),
                       const SizedBox(height: 30),
                       ElevatedButton(
                         onPressed: () {},
