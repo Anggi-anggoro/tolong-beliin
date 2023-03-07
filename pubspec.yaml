@@ -61,6 +61,7 @@ flutter:
   assets:
     - assets/homescreen/tolong beliin BG1.png
     - assets/homescreen/tolong beliin-3.png
+    - assets/homescreen/background-vector.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

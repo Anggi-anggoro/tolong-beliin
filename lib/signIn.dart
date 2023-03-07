@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'component/top/header.dart';
+
 void main() {
   runApp(const SignInScreen());
 }
@@ -11,19 +13,8 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          leading: const BackButton(
-            color: Colors.black,
-          ),
-          centerTitle: true,
-          title: const Text(
-            "Sign Up",
-            style: TextStyle(
-              color: Colors.black,
-            ),
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
+        appBar: const HeaderTitle(
+            headerTitle: "Login"
         ),
         body: Container(
           margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),

@@ -1,37 +1,31 @@
-
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+
+import 'component/top/header.dart';
 
 void main() {
   runApp(const AdsScreen());
 }
 
 class AdsScreen extends StatelessWidget {
-  const AdsScreen({super.key,
-  });
+  const AdsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       home: Scaffold(
-          appBar:
-          AppBar(
-
-            leading: const BackButton(
-              color: Colors.black,
-            ),
-            centerTitle: true,
-            title: const Text(
-              "Login",
-              style: TextStyle(
-                color: Colors.black,
-              ),
-            ),
-            backgroundColor: Colors.transparent,
-            elevation: 0,
+          appBar: const HeaderTitle(
+              headerTitle: "Login"
           ),
           body: Container(
+            decoration: const BoxDecoration(
+                image:  DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage(
+                      'assets/homescreen/background-vector.png',
+                    )
+                )
+            ),
             margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
             child: Center(
                 child: Column(
@@ -63,19 +57,12 @@ class AdsScreen extends StatelessWidget {
                                   "All the information in one app",
                               style: TextStyle(
                                 fontSize: 18,
-
                               )
-
-
                             )
-
                           ]
                         ),
                       )
                     )
-
-
-
                   ],
                 )
             ),
