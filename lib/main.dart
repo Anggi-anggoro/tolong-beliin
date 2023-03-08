@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
                 )
             ),
 
-
             Center(
               child: Image.asset(
                 'assets/homescreen/tolong beliin-3.png',
