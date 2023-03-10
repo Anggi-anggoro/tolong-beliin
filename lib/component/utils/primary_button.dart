@@ -18,12 +18,13 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return  ElevatedButton(
       style: ElevatedButton.styleFrom(
           minimumSize: Size(width,height),
-          backgroundColor: Colors.green,
+          backgroundColor: const Color(0xFF008037),
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10)
+              borderRadius: BorderRadius.circular(20)
           )
       ),
       onPressed: () {onPressed;},
@@ -31,7 +32,10 @@ class PrimaryButton extends StatelessWidget {
         text,
         textAlign: TextAlign.center,
         style: const TextStyle(
-            fontWeight: FontWeight.w400
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+
         ),
       ),
     );

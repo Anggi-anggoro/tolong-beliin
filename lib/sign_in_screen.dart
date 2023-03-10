@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:homescreen/component/utils/primary_button.dart';
+import 'package:homescreen/component/utils/text_input_bg_grey.dart';
 
 import 'component/top/header.dart';
 
-void main() {
-  runApp(const SignInScreen());
-}
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Size screen = MediaQuery.of(context).size;
     return MaterialApp(
       home: Scaffold(
         appBar: const HeaderTitle(
-            headerTitle: "Login"
+            headerTitle: "Sign Up"
         ),
         body: Container(
           margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
@@ -23,8 +23,7 @@ class SignInScreen extends StatelessWidget {
               children: [
                 Image.asset(
                   'assets/homescreen/tolong beliin-3.png',
-                  height: 200,
-                  width: 200,
+                  height: screen.height/6,
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
@@ -42,38 +41,31 @@ class SignInScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: "Full Name / Merchant",
-                          contentPadding: EdgeInsets.symmetric(horizontal: 16),
-                        ),
+                      const FormInput(
+                        hintText: "Full Name / Merchant",
+                        password: false,
                       ),
                       const SizedBox(height: 20),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: "Email / number phone",
-                          contentPadding: EdgeInsets.symmetric(horizontal: 16),
-                        ),
+                      const FormInput(
+                          hintText: "Email/ number phone",
+                          password: false,
                       ),
                       const SizedBox(height: 20),
-                      TextFormField(
-                        obscureText: true,
-                        decoration: const InputDecoration(
+                      const FormInput(
                           hintText: "Password",
-                          contentPadding: EdgeInsets.symmetric(horizontal: 16),
-                        ),
+                          password: true
                       ),
                       const SizedBox(height: 20),
-                      TextFormField(
-                        decoration: const InputDecoration(
+                      const FormInput(
                           hintText: "Code referal",
-                          contentPadding: EdgeInsets.symmetric(horizontal: 16),
-                        ),
+                          password: false
                       ),
                       const SizedBox(height: 30),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text("Sign in"),
+                      PrimaryButton(
+                          text: "Sign in",
+                          width: screen.width,
+                          height: 40,
+                          onPressed: (){}
                       ),
                     ],
                   ),
