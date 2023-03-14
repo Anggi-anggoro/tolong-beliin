@@ -11,6 +11,7 @@ class LoginScreen extends StatelessWidget {
     Size screen = MediaQuery.of(context).size;
     return MaterialApp(
       home: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: const HeaderTitle(
             headerTitle: "Login",
         ),

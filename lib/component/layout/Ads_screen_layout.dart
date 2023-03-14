@@ -16,17 +16,17 @@ class AdsScreenLayout extends StatelessWidget {
               headerTitle: "Login"
           ),
           body: Container(
-            height: screen.height,
-            width: screen.width,
             margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
             child: Center(
                 child: Column(
                   children: [
                     Image.asset(
                       'assets/homescreen/tolong beliin-3.png',
+                      height: screen.height/3.5 ,
+
                     ),
                     Container(
-                        margin: const EdgeInsets.fromLTRB(0, 40, 0, 50),
+                        margin: const EdgeInsets.fromLTRB(0, 40, 0, 80),
                         child: RichText(
                           textAlign: TextAlign.center,
                           text: const TextSpan(
