@@ -12,11 +12,21 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: const HeaderTitle(
             headerTitle: "Sign Up"
         ),
         body: Container(
+          height: screen.height,
+            decoration:const BoxDecoration(
+                image: DecorationImage(
+                    alignment: Alignment.bottomCenter,
+                    image: AssetImage(
+                      'assets/homescreen/Bottom Vector Ads.png',
+                    )
+                )
+            ),
           margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
           child: SingleChildScrollView(
                child:  Column(

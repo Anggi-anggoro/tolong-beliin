@@ -35,6 +35,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_otp_text_field: ^1.1.0+2
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +63,8 @@ flutter:
     - assets/homescreen/tolong beliin BG1.png
     - assets/homescreen/tolong beliin-3.png
     - assets/homescreen/background-vector.png
+    - assets/homescreen/Bottom Vector.png
+    - assets/homescreen/Bottom Vector Ads.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
