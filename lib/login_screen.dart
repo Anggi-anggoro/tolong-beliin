@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homescreen/Forget_password.dart';
 import 'package:homescreen/OTP_Layout.dart';
 import 'package:homescreen/component/top/header.dart';
 import 'package:homescreen/component/utils/primary_button.dart';
@@ -151,7 +152,12 @@ class LoginScreen extends StatelessWidget {
                                   ]
                               ),
                             TextButton(
-                                onPressed: (){},
+                                onPressed: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const ForgetPasswordScreen()),
+                                  );
+                                },
                                 child: const Text(
                                   "Forgot Password?",
                                   style: TextStyle(
