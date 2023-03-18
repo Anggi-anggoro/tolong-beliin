@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:homescreen/component/utils/primary_button.dart';
 import 'package:homescreen/component/utils/text_input_bg_grey.dart';
 
+import 'OTP_Layout.dart';
 import 'component/top/header.dart';
 
 
@@ -75,7 +76,12 @@ class SignInScreen extends StatelessWidget {
                             text: "Sign in",
                             width: screen.width,
                             height: 40,
-                            onPressed: (){}
+                            onPressed: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) =>  VerificationScreen1()),
+                              );
+                            }
                         ),
                       ],
                     ),
