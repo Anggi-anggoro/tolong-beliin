@@ -1,13 +1,74 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:homescreen/Forget_password.dart';
 import 'package:homescreen/OTP_Layout.dart';
+import 'package:homescreen/Sign_in_dua.dart';
 import 'package:homescreen/component/top/header.dart';
 import 'package:homescreen/component/utils/primary_button.dart';
 import 'package:homescreen/sign_in_screen.dart';
+import 'package:http/http.dart' as http;
+
+class LoginScreen extends StatefulWidget {
+  @override
+  LoginScreenState createState() => LoginScreenState();
+}
+
+class LoginScreenState extends State<LoginScreen> {
+
+  final TextEditingController nameStoreController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  bool validateNameStore = false;
+  bool validatePassword = false;
+
+   submitForm (nameStoreController,passwordController,context)  async {
+    String username = nameStoreController.text;
+    String password = passwordController.text;
+    setState(() {
+      username.isEmpty ? validateNameStore = true  : validateNameStore = false;
+      password.isEmpty ? validatePassword = true  : validatePassword = false;
+    });
+    if(username.isNotEmpty && password.isNotEmpty) {
+      http.Response response = await createUser(username, password);
+      final data = json.decode(response.body);
+      if(data['status'].toString() == 'false') {
+        String errorMessage = data['message'];
+        showDialog(
+            context: context,
+            builder: (context) {
+            return AlertDialog(
+              content: Text(errorMessage),
+            );
+        }
+        );
+      }
+      else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>  OtpScreen()),
+        );
+      }
+
+    }
+  }
+
+  Future<http.Response> createUser(String fullname, String userpass) {
+    return http.post(
+      Uri.parse('https://dev.tolongbeliin.com/api/merchant/login'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'fullname': fullname,
+        'userpass': userpass,
+      }),
+    );
+  }
+  void maini() async {
+
+  }
 
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,24 +116,26 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
+                      TextField(
+                        controller: nameStoreController,
+                        decoration: InputDecoration(
+                          errorText:  validateNameStore ? "Enter your name store" : null,
+                          enabledBorder: const UnderlineInputBorder(
                               borderSide: BorderSide(
                                   color: Colors.black12
                               )
                           ),
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: const UnderlineInputBorder(
                               borderSide: BorderSide(
                                   color: Colors.black12
                               )
                           ),
                           hintText: "Enter name store",
-                          hintStyle:  TextStyle(
+                          hintStyle: const TextStyle(
                             fontWeight: FontWeight.w400,
                             color: Colors.black,
                           ),
-                          contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -90,25 +153,27 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      TextFormField(
+                      TextField(
+                        controller: passwordController,
                         obscureText: true,
-                        decoration: const InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
+                        decoration:  InputDecoration(
+                          errorText: validatePassword ? "Enter your password" : null ,
+                          enabledBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(
                                 color: Colors.black12
                             )
                           ),
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: const UnderlineInputBorder(
                               borderSide: BorderSide(
                                   color: Colors.black12
                               )
                           ),
                           hintText: "Enter Password",
-                          hintStyle:  TextStyle(
+                          hintStyle: const TextStyle(
                             fontWeight: FontWeight.w400,
                             color: Colors.black,
                           ),
-                          contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                         ),
                       ),
                       const SizedBox(height: 15),
@@ -116,7 +181,8 @@ class LoginScreen extends StatelessWidget {
                           text: "Login",
                           width: screen.width,
                           height: 40,
-                          onPressed: (){}
+                        onPressed: () {submitForm(nameStoreController,passwordController,context);
+                        },
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -138,7 +204,7 @@ class LoginScreen extends StatelessWidget {
                                         onPressed: (){
                                           Navigator.push(
                                             context,
-                                            MaterialPageRoute(builder: (context) => const SignInScreen()),
+                                            MaterialPageRoute(builder: (context) =>  SignInScreenDua()),
                                           );
                                         },
                                         child: const Text(
@@ -182,3 +248,4 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+
