@@ -49,7 +49,6 @@ class ForgetPasswordScreen extends StatelessWidget {
                             style: TextStyle(
                               color: Colors.grey.withOpacity(0.7),
                               fontWeight: FontWeight.w500,
-
                             ),
                           ),
                         ),

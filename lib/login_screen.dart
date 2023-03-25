@@ -64,11 +64,6 @@ class LoginScreenState extends State<LoginScreen> {
       }),
     );
   }
-  void maini() async {
-
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -204,7 +199,7 @@ class LoginScreenState extends State<LoginScreen> {
                                         onPressed: (){
                                           Navigator.push(
                                             context,
-                                            MaterialPageRoute(builder: (context) =>  SignInScreenDua()),
+                                            MaterialPageRoute(builder: (context) =>  SignInScreen()),
                                           );
                                         },
                                         child: const Text(

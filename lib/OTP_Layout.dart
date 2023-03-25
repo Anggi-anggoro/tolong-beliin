@@ -5,12 +5,12 @@ import 'component/utils/primary_button.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 
-class VerificationScreen1 extends StatefulWidget {
+class OtpScreen extends StatefulWidget {
   @override
   OneTimePasswordLayout createState() => OneTimePasswordLayout();
 }
 
-class OneTimePasswordLayout extends State<VerificationScreen1> {
+class OneTimePasswordLayout extends State<OtpScreen> {
   late List<TextStyle?> otpTextStyles;
   late List<TextEditingController?> controls;
 
