@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:homescreen/component/utils/primary_button.dart';
 import 'package:homescreen/component/utils/text_input_bg_grey.dart';
+import 'package:platform_device_id/platform_device_id.dart';
 
 import 'Detail_page.dart';
 import 'OTP_Layout.dart';
@@ -97,6 +98,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                           const SizedBox(height: 20),
                           TextFormField(
+                            obscureText: true,
                             controller: userpass,
                             decoration: TextFieldStyle.textFieldStyle(
                                 hintTextStr: "Password",

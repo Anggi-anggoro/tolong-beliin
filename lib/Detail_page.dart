@@ -5,11 +5,13 @@ import 'package:homescreen/component/top/header.dart';
 import 'package:homescreen/component/utils/primary_button.dart';
 import 'package:http/http.dart' as http;
 
+import 'OTP_Layout.dart';
+
 
 class DetailPage extends StatelessWidget {
 
 
-  DetailPage({required this.fullname, required this.userpass, required this.emailphone,});
+  DetailPage({required this.fullname, required this.userpass, required this.emailphone});
 
   String fullname;
   String userpass;
@@ -21,17 +23,34 @@ class DetailPage extends StatelessWidget {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{
+      body: jsonEncode(<String, String?>{
         'fullname': fullname,
         'userpass': userpass,
-        'emailphone': emailphone
+        'emailphone': emailphone,
       }),
     );
   }
-  void maini() async {
-
-    http.Response response = await createUser(fullname, userpass,emailphone);
+  sendData(context) async {
+    http.Response response = await createUser(fullname, userpass,emailphone );
     print(response.body);
+      final data = json.decode(response.body);
+      if(data['status'].toString() == 'false') {
+        String errorMessage = data['message'];
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                content: Text(errorMessage),
+              );
+            }
+        );
+      }
+      else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>  OtpScreen(username: fullname, status: "signIn")),
+        );
+      }
   }
 
 
@@ -81,11 +100,6 @@ class DetailPage extends StatelessWidget {
                                 fontWeight: FontWeight.w400
                             ),
                           ),
-                          Text("Password",
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400
-                            ),),
                           Text("Email/phone",
                             style: TextStyle(
                                 fontSize: 18,
@@ -98,11 +112,6 @@ class DetailPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(": $fullname",
-                            style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500
-                            ),),
-                          Text(": $userpass",
                             style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500
@@ -122,7 +131,7 @@ class DetailPage extends StatelessWidget {
                     width: 80,
                     height: 30,
                     onPressed: () {
-                      maini();
+                      sendData(context);
                     },
                   )
                 ],

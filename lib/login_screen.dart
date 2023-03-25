@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:homescreen/Forget_password.dart';
 import 'package:homescreen/OTP_Layout.dart';
-import 'package:homescreen/Sign_in_dua.dart';
 import 'package:homescreen/component/top/header.dart';
 import 'package:homescreen/component/utils/primary_button.dart';
 import 'package:homescreen/sign_in_screen.dart';
 import 'package:http/http.dart' as http;
+import 'package:platform_device_id/platform_device_id.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -21,9 +21,16 @@ class LoginScreenState extends State<LoginScreen> {
   bool validateNameStore = false;
   bool validatePassword = false;
 
+  String? idDevice;
+  void getDeviceIDUsingPlugin() async {
+    var device = await PlatformDeviceId.getDeviceId;
+    idDevice = device.toString();
+  }
+
    submitForm (nameStoreController,passwordController,context)  async {
     String username = nameStoreController.text;
     String password = passwordController.text;
+    String? deviceId = idDevice;
     setState(() {
       username.isEmpty ? validateNameStore = true  : validateNameStore = false;
       password.isEmpty ? validatePassword = true  : validatePassword = false;
@@ -45,7 +52,7 @@ class LoginScreenState extends State<LoginScreen> {
       else {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) =>  OtpScreen()),
+          MaterialPageRoute(builder: (context) =>  OtpScreen(username: username, status: "login")),
         );
       }
 
@@ -67,6 +74,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    getDeviceIDUsingPlugin();
     Size screen = MediaQuery.of(context).size;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -216,7 +224,7 @@ class LoginScreenState extends State<LoginScreen> {
                                 onPressed: (){
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => const ForgetPasswordScreen()),
+                                    MaterialPageRoute(builder: (context) =>  ForgetPasswordScreen()),
                                   );
                                 },
                                 child: const Text(
